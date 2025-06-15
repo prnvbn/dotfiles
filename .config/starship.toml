@@ -1,140 +1,161 @@
 format = """
-[╭](fg:current_line)\
+[](#2C3E50)\
 $os\
-$directory\
-$git_branch\
-$fill\
-$nodejs\
-$dotnet\
-$python\
-$java\
-$c\
-$cmd_duration\
-$shell\
-$time\
 $username\
+$hostname\
+[](bg:#F1C40F fg:#2C3E50)\
+$directory\
+[](fg:#F1C40F bg:#3498DB)\
+$git_branch\
+$git_status\
+[](fg:#3498DB bg:#2ECC71)\
+$c\
+$elixir\
+$elm\
+$golang\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+$scala\
+$python\
+$rlang\
+[](fg:#2ECC71 bg:#F8EFE0)\
+$docker_context\
+[](fg:#F8EFE0 bg:#EC8FD0)\
+$conda\
+[ ](fg:#EC8FD0)\
 $line_break\
-$character\
+$character
 """
 
-palette = 'dracula'
-add_newline = true
-
-[palettes.dracula]
-foreground = '#F8F8F2'
-background = '#282A36'
-current_line = '#44475A'
-primary = '#1E1F29'
-box = '#44475A'
-blue	= '#6272A4'
-cyan = '#8BE9FD'
-green	= '#50FA7B'
-orange = '#FFB86C'
-pink = '#FF79C6'
-purple = '#BD93F9'
-red	= '#FF5555'
-yellow = '#F1FA8C'
-
-[os]
-format = '(fg:current_line)[](fg:red)[$symbol ](fg:primary bg:red)[](fg:red)'
+# Set to true to avoid a two-line prompt
+[line_break]
 disabled = false
 
-[os.symbols]
-Alpine = ''
-Amazon = ''
-Android = ''
-Arch = ''
-CentOS = ''
-Debian = ''
-EndeavourOS = ''
-Fedora = ''
-FreeBSD = ''
-Garuda = ''
-Gentoo = ''
-Linux = ''
-Macos = ''
-Manjaro = ''
-Mariner = ''
-Mint = ''
-NetBSD = ''
-NixOS = ''
-OpenBSD = ''
-OpenCloudOS = ''
-openEuler = ''
-openSUSE = ''
-OracleLinux = '⊂⊃'
-Pop = ''
-Raspbian = ''
-Redhat = ''
-RedHatEnterprise = ''
-Solus = ''
-SUSE = ''
-Ubuntu = ''
-Unknown = ''
-Windows = ''
+# Set disabled to true when using a one-line prompt for more aesthetically pleasing results
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
+format = '$symbol '
+disabled = false
+
+# Disable the blank line at the start of the prompt
+#add_newline = false
+
+# You can also replace your username with a neat symbol like  or disable this
+# and use the os module below
+[username]
+show_always = true
+style_user = 'bg:#2C3E50'
+style_root = 'bg:#2C3E50'
+format = '[$user ]($style)'
+disabled = false
+
+[hostname]
+ssh_only = true
+ssh_symbol = '🌐'
+trim_at = '.'
+style = 'bg:#2C3E50'
+format = '[$ssh_symbol $hostname]($style)'
+disabled = false
+
+# An alternative to the username module which displays a symbol that
+# represents the current operating system
+[os]
+style = 'bg:#2C3E50'
+disabled = true  # disabled by default
 
 [directory]
-format = '[─](fg:current_line)[](fg:pink)[󰷏 ](fg:primary bg:pink)[](fg:pink bg:box)[ $read_only$truncation_symbol$path](fg:foreground bg:box)[](fg:box)'
-home_symbol = " ~/"
-truncation_symbol = ' '
-truncation_length = 2
-read_only = '󱧵 '
-read_only_style = ''
-
-[git_branch]
-format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ $branch](fg:foreground bg:box)[](fg:box)'
-symbol = ' '
-
-[nodejs]
-format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
-symbol = '󰎙 Node.js'
-
-[dotnet]
-format = '[─](fg:current_line)[](fg:purple)[$symbol](fg:primary bg:purple)[](fg:purple bg:box)[ $tfm](fg:foreground bg:box)[](fg:box)'
-symbol = ' .NET'
-
-[python]
-format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
-symbol = ' python'
-
-[java]
-format = '[─](fg:current_line)[](fg:red)[$symbol](fg:primary bg:red)[](fg:red bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
-symbol = ' Java'
+style = 'bg:#F1C40F fg:#2C3E50'
+format = '[ $path ]($style)'
+truncation_length = 3
+truncation_symbol = '…/'
 
 [c]
-format = '[─](fg:current_line)[](fg:blue)[$symbol](fg:primary bg:blue)[](fg:blue bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
-symbol = ' C'
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[conda]
+symbol = '🅒'
+style = 'bg:#EC8FD0 fg:#2C3E50'
+format = '[ $symbol $environment ]($style)'
+ignore_base = false
+
+[docker_context]
+symbol = ''
+style = 'bg:#FCA17D fg:#2C3E50'
+format = '[ $symbol $context ]($style) $path'
+
+[elixir]
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[git_branch]
+symbol = ''
+style = 'bg:#3498DB fg:#2C3E50'
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = 'bg:#3498DB fg:#2C3E50'
+format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
-format = '[─](fg:current_line)[](fg:blue)[$symbol](fg:primary bg:blue)[](fg:blue bg:box)[ $version](fg:foreground bg:box)[](fg:box)'
-symbol = ' Go'
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
 
-[fill]
-symbol = '─'
-style = 'fg:current_line'
+[haskell]
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
 
-[cmd_duration]
-min_time = 500
-format = '[─](fg:current_line)[](fg:orange)[ ](fg:primary bg:orange)[](fg:orange bg:box)[ $duration ](fg:foreground bg:box)[](fg:box)'
+[java]
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
 
-[shell]
-format = '[─](fg:current_line)[](fg:blue)[ ](fg:primary bg:blue)[](fg:blue bg:box)[ $indicator](fg:foreground bg:box)[](fg:box)'
-unknown_indicator = 'shell'
-powershell_indicator = 'powershell'
-fish_indicator = 'fish'
-disabled = false
+[julia]
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
 
-[time]
-format = '[─](fg:current_line)[](fg:purple)[󰦖 ](fg:primary bg:purple)[](fg:purple bg:box)[ $time](fg:foreground bg:box)[](fg:box)'
-time_format = '%H:%M'
-disabled = false
+[nodejs]
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
 
-[username]
-format = '[─](fg:current_line)[](fg:yellow)[ ](fg:primary bg:yellow)[](fg:yellow bg:box)[ $user](fg:foreground bg:box)[](fg:box) '
-show_always = false
+[nim]
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
 
-[character]
-format = """
-[╰─$symbol](fg:current_line) """
-success_symbol = '[λ](fg:bold white)'
-error_symbol = '[×](fg:bold red)'
+[python]
+symbol = '🐍'
+format = '[${symbol} ${pyenv_prefix} (${version} )(\($virtualenv\) )]($style)'
+style = 'bg:#2ECC71 fg:#2C3E50'
+
+[rlang]
+symbol = '📐'
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[$symbol ($version )]($style)'
+
+[rust]
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[scala]
+symbol = ''
+style = 'bg:#2ECC71 fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
