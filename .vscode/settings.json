@@ -204,5 +204,8 @@
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
-    }
+    },
+    "[rust]": {
+        "editor.foldingStrategy": "indentation"
+    },
 }
