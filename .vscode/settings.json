@@ -152,7 +152,7 @@
             "after": [
                 "shift+v"
             ]
-        }
+        },
     ],
     "vim.insertModeKeyBindings": [
         {
@@ -165,10 +165,20 @@
             ]
         }
     ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "r",
+                "n"
+            ],
+            "commands": [
+                "editor.action.rename"
+            ]
+        }
+    ],
     /********* VIM KEYBINDS END *********/
-    // added nerd font to the following to get nerd fonts working in the terminal
     "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace, 'Hack Nerd Font Mono'",
-    /* The following is needed to get bash working as the default shell on mac */
     "terminal.integrated.defaultProfile.osx": "bash",
     "terminal.integrated.profiles.osx": {
         "bash": {
@@ -178,22 +188,17 @@
             ]
         }
     },
-    /***************************************************************************/
     "editor.rulers": [
         80,
         100
     ],
-    /********* RUST SETTINGS START *********/
     "files.readonlyInclude": {
         "**/.cargo/registry/src/**/*.rs": true,
-        "**/lib/rustlib/src/rust/library/**/*.rs": true,
+        "**/lib/rustlib/src/rust/library/**/*.rs": true
     },
     "files.autoSaveWhenNoErrors": true,
     "files.autoSave": "afterDelay",
-    /********* RUST SETTINGS END *********/
-    "cSpell.enabled": false,
     "[markdown]": {
-        "cSpell.enabled": true,
         "editor.wordWrapColumn": 80
     },
     "[javascript]": {
@@ -205,7 +210,26 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
+    "window.commandCenter": false,
+    "cSpell.enabledFileTypes": {
+        "markdown": true,
+        "rust": false,
+        "go": false
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "redhat.telemetry.enabled": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
     "[rust]": {
         "editor.foldingStrategy": "indentation"
-    },
+    }
 }
