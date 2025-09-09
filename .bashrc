@@ -1,6 +1,8 @@
+export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:/opt/homebrew/bin/
 export PATH="$PATH:/Users/pranavbansal/.local/bin"
-
+source $HOME/.local/bin/env 
+  
 eval "$(starship init bash)"
 eval "$(fzf --bash)"
 
@@ -82,6 +84,15 @@ export PATH=$PATH:/opt/homebrew/lib/ruby/gems/3.4.0/bin
 # code
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
+# kubernetes
+alias k=kubectl
+kns() {
+  if [ -z "$1" ]; then
+    echo "Usage: kns <namespace>"
+    return 1
+  fi
+  kubectl config set-context --current --namespace="$1"
+}
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
