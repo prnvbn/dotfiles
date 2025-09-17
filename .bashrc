@@ -94,6 +94,17 @@ kns() {
   kubectl config set-context --current --namespace="$1"
 }
 
+ktx() {
+  if [ -z "$1" ]; then
+    echo "Available contexts:"
+    kubectl config get-contexts --output=name
+    echo ""
+    echo "Usage: ktx <context>"
+    return 1
+  fi
+  kubectl config use-context "$1"
+}
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
