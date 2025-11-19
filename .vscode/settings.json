@@ -146,13 +146,31 @@
         },
         {
             "before": [
+                "]",
+                "d"
+            ],
+            "commands": [
+                "editor.action.marker.next"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "d"
+            ],
+            "commands": [
+                "editor.action.marker.prev"
+            ]
+        },
+        {
+            "before": [
                 "v",
                 "v"
             ],
             "after": [
                 "shift+v"
             ]
-        },
+        }
     ],
     "vim.insertModeKeyBindings": [
         {
