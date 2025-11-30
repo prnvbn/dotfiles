@@ -137,15 +137,6 @@
         },
         {
             "before": [
-                "<leader>",
-                "d"
-            ],
-            "commands": [
-                "workbench.view.debug"
-            ]
-        },
-        {
-            "before": [
                 "]",
                 "d"
             ],
