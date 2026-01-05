@@ -105,6 +105,20 @@ ktx() {
   kubectl config use-context "$1"
 }
 
+
+ksec () {
+  local name="$1"
+  if [[ -z "$name" ]]
+  then
+    echo "Usage: ksec <secret-name>" >&2
+    return 1
+  fi
+  kubectl get secret "$name" -o json | jq -r '
+  .data
+  | to_entries[]
+  | "\(.key): \(.value | @base64d)"
+'
+}
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
