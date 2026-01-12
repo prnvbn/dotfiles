@@ -10,6 +10,7 @@ alias cls=clear
 alias ebashrc="vi ~/.bashrc"
 alias sbashrc="source ~/.bashrc"
 alias cat=bat
+alias grep=rg
 alias c=clocks
 
 
