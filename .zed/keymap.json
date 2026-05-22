@@ -1,0 +1,51 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle",
+      "cmd-k h": ["pane::SplitLeft", {}],
+      "cmd-k j": ["pane::SplitDown", {}],
+      "cmd-k k": ["pane::SplitUp", {}],
+      "cmd-k l": ["pane::SplitRight", {}],
+      "cmd-shift-g": "git_panel::ToggleFocus",
+      "cmd-shift-e": "project_panel::ToggleFocus",
+      "cmd-shift-i": "agent::ToggleFocus",
+      "cmd-shift-j": "workspace::ToggleZoom",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "v v": "vim::SwitchToVisualLineMode",
+      "g r": "editor::FindAllReferences",
+      "g f": "editor::Format",
+      "cmd-shift-i": "agent::ToggleFocus",
+    },
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space t": "terminal_panel::ToggleFocus",
+      "space e": "project_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds",
+    },
+  },
+]
