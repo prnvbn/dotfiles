@@ -1,8 +1,8 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:/opt/homebrew/bin/
 export PATH="$PATH:/Users/pranavbansal/.local/bin"
-source $HOME/.local/bin/env 
-  
+export PATH="$PATH:/usr/local/bin"
+
 eval "$(starship init bash)"
 eval "$(fzf --bash)"
 
@@ -13,9 +13,14 @@ alias cat=bat
 alias grep=rg
 alias c=clocks
 
-
-# git autocomplete
+# git
+alias gps="git push"
+alias gpl="git pull"
+alias gcm="git checkout"
 source "$HOME/.local/share/bash-completion/completions/git"
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 # brew installations autocomplete
 for script in /opt/homebrew/etc/profile.d/bash_completion.sh/*.sh; do
@@ -82,10 +87,7 @@ export PATH=$PATH:~/go/bin
 # ruby
 export PATH=$PATH:/opt/homebrew/lib/ruby/gems/3.4.0/bin
 
-# code
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
-# kubernetes
+# k8s
 alias k=kubectl
 kns() {
   if [ -z "$1" ]; then
@@ -120,6 +122,7 @@ ksec () {
   | "\(.key): \(.value | @base64d)"
 '
 }
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -127,6 +130,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # rs
 . "$HOME/.cargo/env"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # py
 export PYENV_ROOT="$HOME/.pyenv"
@@ -137,3 +141,8 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/postgresql@15/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/postgresql@15/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@15/lib/pkgconfig"
+
+# aws
+export AWS_PROFILE=pranav
+
+alias pi="ssh prnvbn@prnvbn-pi.local"
