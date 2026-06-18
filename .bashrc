@@ -9,6 +9,7 @@ eval "$(fzf --bash)"
 alias cls=clear
 alias ebashrc="vi ~/.bashrc"
 alias sbashrc="source ~/.bashrc"
+alias salacritty="alacritty msg config reload"
 alias cat=bat
 alias grep=rg
 alias c=clocks
