@@ -1,3 +1,9 @@
+if command -v tmux >/dev/null 2>&1; then
+  if [ -z "$TMUX" ]; then
+    tmux attach-session -t main 2>/dev/null || tmux new-session -s main
+  fi
+fi
+
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:/opt/homebrew/bin/
 export PATH="$PATH:/Users/pranavbansal/.local/bin"
@@ -7,17 +13,22 @@ eval "$(starship init bash)"
 eval "$(fzf --bash)"
 
 alias cls=clear
-alias ebashrc="vi ~/.bashrc"
-alias sbashrc="source ~/.bashrc"
-alias salacritty="alacritty msg config reload"
 alias cat=bat
 alias grep=rg
 alias c=clocks
 
+alias ebashrc="vi ~/.bashrc"
+alias sbashrc="source ~/.bashrc"
+alias ealacritty="vi ~/.config/alacritty/alacritty.toml"
+alias salacritty="alacritty msg config reload"
+alias etmux="vi ~/.tmux.conf"
+alias stmux="tmux source-file ~/.tmux.conf"
+
+
 # git
 alias gps="git push"
 alias gpl="git pull"
-alias gcm="git checkout"
+alias gcm="git checkout main"
 source "$HOME/.local/share/bash-completion/completions/git"
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -124,6 +135,7 @@ ksec () {
 '
 }
 
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -142,6 +154,7 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/postgresql@15/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/postgresql@15/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@15/lib/pkgconfig"
+
 
 # aws
 export AWS_PROFILE=pranav
