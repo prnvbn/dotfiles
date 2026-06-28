@@ -1,13 +1,12 @@
-if command -v tmux >/dev/null 2>&1; then
-  if [ -z "$TMUX" ]; then
-    tmux attach-session -t main 2>/dev/null || tmux new-session -s main
-  fi
-fi
-
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:/opt/homebrew/bin/
 export PATH="$PATH:/Users/pranavbansal/.local/bin"
 export PATH="$PATH:/usr/local/bin"
+
+if command -v tmux >/dev/null 2>&1 && [ -z "$TMUX" ]; then
+  exec tmux new-session -s "term-$PPID-$$"
+fi
+
 
 eval "$(starship init bash)"
 eval "$(fzf --bash)"

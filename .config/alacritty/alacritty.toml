@@ -1,6 +1,10 @@
 [window]
 option_as_alt = "Both"
 
+[terminal.shell]
+program = "/bin/bash"
+args = ["-i"]
+
 [keyboard]
 bindings = [
   # Alt+Left/Right = backward/forward word
@@ -51,4 +55,8 @@ bindings = [
 
   # Cmd+Shift+J = toggle zoom
   { key = "J", mods = "Command|Shift", chars = "\u0002z" },
+
+  # Cmd+Shift+= / Cmd+Shift+- = font size
+  { key = "+", mods = "Command|Shift", action = "IncreaseFontSize" },
+  { key = "_", mods = "Command|Shift", action = "DecreaseFontSize" },
 ]
