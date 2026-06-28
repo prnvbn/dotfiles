@@ -7,7 +7,6 @@ if command -v tmux >/dev/null 2>&1 && [ -z "$TMUX" ]; then
   exec tmux new-session -s "term-$PPID-$$"
 fi
 
-
 eval "$(starship init bash)"
 eval "$(fzf --bash)"
 

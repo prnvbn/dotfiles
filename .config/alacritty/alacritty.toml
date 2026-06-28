@@ -59,4 +59,6 @@ bindings = [
   # Cmd+Shift+= / Cmd+Shift+- = font size
   { key = "+", mods = "Command|Shift", action = "IncreaseFontSize" },
   { key = "_", mods = "Command|Shift", action = "DecreaseFontSize" },
+
+  { key = "Return", mods = "Shift", chars = "\u001b[13;2u" },
 ]
