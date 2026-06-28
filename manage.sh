@@ -91,6 +91,7 @@ usage() {
 declare -A files=(
   [".tmux.conf"]="$HOME/.tmux.conf"
   [".bashrc"]="$HOME/.bashrc"
+  [".bash_profile"]="$HOME/.bash_profile"
   [".vimrc"]="$HOME/.vimrc"
   [".config/alacritty/alacritty.toml"]="$HOME/.config/alacritty/alacritty.toml"
   [".config/starship.toml"]="$HOME/.config/starship.toml"
