@@ -28,6 +28,9 @@ bindings = [
   # Close pane
   { key = "W", mods = "Command", chars = "\u0002x" },
 
+  # Tmux copy mode
+  { key = "C", mods = "Command|Shift", chars = "\u0002v" },
+
   # Pane navigation
   { key = "Left", mods = "Command", chars = "\u001b[1;5D" },
   { key = "Right", mods = "Command", chars = "\u001b[1;5C" },
