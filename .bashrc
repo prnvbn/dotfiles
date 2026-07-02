@@ -99,6 +99,7 @@ export PATH=$PATH:/opt/homebrew/lib/ruby/gems/3.4.0/bin
 
 # k8s
 alias k=kubectl
+source <(kubectl completion bash | sed 's/kubectl/k/g')
 kns() {
   if [ -z "$1" ]; then
     echo "Usage: kns <namespace>"
