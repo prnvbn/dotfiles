@@ -65,7 +65,7 @@ install_file() {
   fi
 
   mkdir -p "$(dirname "$target")"
-  cp "$source" "$source.bak"
+  cp "$target" "$source.bak"
   cp "$source" "$target"
   echo "Installed $target"
 }
