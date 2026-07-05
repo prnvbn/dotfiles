@@ -48,4 +48,10 @@
       "shift-s": "vim::PushAddSurrounds",
     },
   },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-e": "workspace::ActivatePaneUp",
+    },
+  },
 ]
