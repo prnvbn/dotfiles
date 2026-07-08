@@ -85,8 +85,22 @@ refresh_file() {
   echo "Refreshed $repo_rel"
 }
 
+rollback_file() {
+  local repo_rel="$1"
+  local target="$2"
+  local backup="$target.bak"
+
+  if [ ! -f "$backup" ]; then
+    echo "No backup file found: $backup"
+    return
+  fi
+
+  mv "$backup" "$target"
+  echo "Rolled back $target"
+}
+
 usage() {
-  echo "Usage: ./manage.sh [--diff|--install|--refresh]" >&2
+  echo "Usage: ./manage.sh [--diff|--install|--refresh|--rollback]" >&2
 }
 
 declare -A files=(
@@ -125,6 +139,10 @@ case "$mode" in
   --refresh)
     echo "Refreshing repo configs from live paths"
     action=refresh_file
+    ;;
+  --rollback)
+    echo "Rolling back live paths from .bak files"
+    action=rollback_file
     ;;
   *)
     usage
