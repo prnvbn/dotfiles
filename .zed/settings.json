@@ -55,5 +55,24 @@
       "hard_tabs": true,
       "tab_size": 4,
     },
+    "Odin": {
+      "enable_language_server": true,
+      "language_servers": ["ols", "..."],
+    },
+  },
+  "show_completions_on_input": true,
+  "lsp": {
+    "ols": {
+      "initialization_options": {
+        "enable_hover": true,
+        "enable_snippets": true,
+        "enable_procedure_snippet": true,
+        "enable_completion_matching": true,
+        "enable_references": true,
+        "enable_document_symbols": true,
+        "enable_format": true,
+        "enable_document_links": true,
+      },
+    },
   },
 }
