@@ -57,7 +57,7 @@
     },
     "Odin": {
       "enable_language_server": true,
-      "language_servers": ["ols", "..."],
+      "language_servers": ["ols"],
     },
   },
   "show_completions_on_input": true,

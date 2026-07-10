@@ -54,4 +54,25 @@
       "cmd-e": "workspace::ActivatePaneUp",
     },
   },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-k h": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "left", "focus": true },
+      ],
+      "cmd-k j": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "down", "focus": true },
+      ],
+      "cmd-k k": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "up", "focus": true },
+      ],
+      "cmd-k l": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "right", "focus": true },
+      ],
+    },
+  },
 ]
