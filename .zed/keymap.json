@@ -29,7 +29,6 @@
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
-      "v v": "vim::SwitchToVisualLineMode",
       "g r": "editor::FindAllReferences",
       "g f": "editor::Format",
       "cmd-shift-i": "agent::ToggleFocus",
