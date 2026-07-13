@@ -145,14 +145,10 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.cargo/env"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-
 # postgres
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/postgresql@15/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/postgresql@15/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@15/lib/pkgconfig"
 
-# aws
-export AWS_PROFILE=pranav
-
-alias pi="ssh prnvbn@prnvbn-pi.local"
+source ~/.bashrc.local
