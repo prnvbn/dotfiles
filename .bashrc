@@ -15,6 +15,7 @@ alias cls=clear
 alias cat=bat
 alias grep=rg
 alias c=clocks
+alias ba="bus arrivals"
 
 alias ebashrc="vi ~/.bashrc"
 alias sbashrc="source ~/.bashrc"
