@@ -80,15 +80,21 @@ vcreate() {
     echo "initializing directory with uv"
     uv init
 
-    echo "installing dev dependencies with uv"
-    uv add --dev isort black
-
-    if [[ $? -eq 0 ]]; then
-        echo "Virtual environment '$ENV_NAME' created with Python $PYTHON_VERSION"
-        echo "Activate it using: source $ENV_NAME/bin/activate"
-    else
-        echo "Failed to create virtual environment."
+    echo "installing Ruff with uv"
+    if ! uv add --dev ruff; then
+        echo "Failed to install Ruff."
+        return 1
     fi
+
+    if ! grep -q '^\[tool\.ruff\.lint\]' pyproject.toml; then
+        if ! printf '\n[tool.ruff.lint]\nextend-select = ["I"]\n' >> pyproject.toml; then
+            echo "Failed to configure Ruff."
+            return 1
+        fi
+    fi
+
+    echo "Virtual environment '$ENV_NAME' created with Python $PYTHON_VERSION"
+    echo "Activate it using: vact"
 }
 
 export PYENV_ROOT="$HOME/.pyenv"
