@@ -43,60 +43,6 @@ done
 
 # py
 alias vact="source .venv/bin/activate"
-
-vcreate() {
-    # Default values
-    PYTHON_VERSION=""
-    ENV_NAME=".venv"
-
-    # Parse arguments
-    while [[ "$#" -gt 0 ]]; do
-        case $1 in
-            --python) PYTHON_VERSION="$2"; shift ;;
-            *) echo "Usage: vcreate [--python <version>]"; return 1 ;;
-        esac
-        shift
-    done
-
-    # If a Python version is specified, use pyenv to find the executable
-    if [[ -n "$PYTHON_VERSION" ]]; then
-        PYENV_PYTHON=$(pyenv versions --bare | grep -E "^$PYTHON_VERSION\$")
-
-        if [[ -z "$PYENV_PYTHON" ]]; then
-            echo "Python version $PYTHON_VERSION not found in pyenv. Install it using:"
-            echo "  pyenv install $PYTHON_VERSION"
-            return 1
-        fi
-
-        PYTHON_BIN="$(pyenv root)/versions/$PYTHON_VERSION/bin/python"
-    else
-        PYTHON_BIN="python"  # Default to system Python
-    fi
-
-    # Create the virtual environment
-    echo "Creating virtual environment $ENV_NAME with Python $PYTHON_VERSION"
-    $PYTHON_BIN -m venv $ENV_NAME
-
-    echo "initializing directory with uv"
-    uv init
-
-    echo "installing Ruff with uv"
-    if ! uv add --dev ruff; then
-        echo "Failed to install Ruff."
-        return 1
-    fi
-
-    if ! grep -q '^\[tool\.ruff\.lint\]' pyproject.toml; then
-        if ! printf '\n[tool.ruff.lint]\nextend-select = ["I"]\n' >> pyproject.toml; then
-            echo "Failed to configure Ruff."
-            return 1
-        fi
-    fi
-
-    echo "Virtual environment '$ENV_NAME' created with Python $PYTHON_VERSION"
-    echo "Activate it using: vact"
-}
-
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -110,6 +56,8 @@ export PATH=$PATH:/opt/homebrew/lib/ruby/gems/3.4.0/bin
 # k8s
 alias k=kubectl
 source <(kubectl completion bash | sed 's/kubectl/k/g')
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 kns() {
   if [ -z "$1" ]; then
     echo "Usage: kns <namespace>"
