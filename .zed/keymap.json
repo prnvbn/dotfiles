@@ -51,6 +51,7 @@
     "context": "Terminal",
     "bindings": {
       "cmd-e": "workspace::ActivatePaneUp",
+      "cmd-shift-c": ["terminal::SendText", "\u0002v"],
     },
   },
   {
