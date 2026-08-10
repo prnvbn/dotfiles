@@ -12,6 +12,7 @@
   "agent": {
     "favorite_models": [],
     "model_parameters": [],
+    "dock": "right",
   },
   "git_panel": {},
   "agent_servers": {
