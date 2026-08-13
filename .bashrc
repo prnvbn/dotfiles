@@ -2,6 +2,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:/opt/homebrew/bin/
 export PATH="$PATH:/Users/pranavbansal/.local/bin"
 export PATH="$PATH:/usr/local/bin"
+export PATH="/Users/pranav/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
 
 if [[ $- == *i* ]] && [ -t 1 ] && command -v tmux >/dev/null 2>&1 && [ -z "$TMUX" ]; then
@@ -60,6 +61,9 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 kns() {
   if [ -z "$1" ]; then
+    echo "Available namespaces:"
+    kubectl get namespaces --output=name
+    echo ""
     echo "Usage: kns <namespace>"
     return 1
   fi
