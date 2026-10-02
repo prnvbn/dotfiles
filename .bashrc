@@ -2,7 +2,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:/opt/homebrew/bin/
 export PATH="$PATH:/Users/pranavbansal/.local/bin"
 export PATH="$PATH:/usr/local/bin"
-export PATH="/Users/pranav/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
 
 if [[ $- == *i* ]] && [ -t 1 ] && command -v tmux >/dev/null 2>&1 && [ -z "$TMUX" ]; then
@@ -44,6 +43,7 @@ done
 
 # py
 alias vact="source .venv/bin/activate"
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -97,8 +97,9 @@ ksec () {
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm use --silent default
 
 # rs
 . "$HOME/.cargo/env"
