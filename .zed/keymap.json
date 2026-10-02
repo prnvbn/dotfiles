@@ -31,6 +31,7 @@
     "bindings": {
       "g r": "editor::FindAllReferences",
       "g f": "editor::Format",
+      "g h": "editor::Hover",
       "cmd-shift-i": "agent::ToggleFocus",
     },
   },
@@ -50,8 +51,8 @@
   {
     "context": "Terminal",
     "bindings": {
+      "cmd-shift-c": "terminal::ToggleViMode",
       "cmd-e": "workspace::ActivatePaneUp",
-      "cmd-shift-c": ["terminal::SendText", "\u0002v"],
     },
   },
   {
@@ -73,6 +74,13 @@
         "workspace::MoveItemToPaneInDirection",
         { "direction": "right", "focus": true },
       ],
+    },
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      // "g e": "vim::HelixJumpToWordEnd",
+      "g w": "vim::HelixJumpToWord",
     },
   },
 ]
