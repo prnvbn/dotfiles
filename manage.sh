@@ -109,6 +109,7 @@ declare -A files=(
   [".bash_profile"]="$HOME/.bash_profile"
   [".vimrc"]="$HOME/.vimrc"
   [".config/alacritty/alacritty.toml"]="$HOME/.config/alacritty/alacritty.toml"
+  [".config/clocks/config.yaml"]="$HOME/.config/clocks/config.yaml"
   [".config/starship.toml"]="$HOME/.config/starship.toml"
   [".vscode/keybindings.json"]="$HOME/Library/Application Support/Code/User/keybindings.json"
   [".vscode/settings.json"]="$HOME/Library/Application Support/Code/User/settings.json"

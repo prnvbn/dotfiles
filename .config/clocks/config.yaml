@@ -1,0 +1,22 @@
+layout:
+    layoutType: 2
+    rowSizes:
+        - 2
+        - 2
+    centerEachRow: true
+clocks:
+    - heading: San Francisco, USA
+      zone: America/Los_Angeles
+      color: white
+    - heading: London, UK
+      zone: Europe/London
+      color: blue
+    - heading: Abu Dhabi, UAE
+      zone: Asia/Dubai
+      color: yellow
+    - heading: New Delhi, India
+      zone: Asia/Kolkata
+      color: green
+live: false
+seconds: false
+twelveHour: true
