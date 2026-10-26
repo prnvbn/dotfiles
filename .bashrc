@@ -3,6 +3,7 @@ export PATH=$PATH:/opt/homebrew/bin/
 export PATH="$PATH:/Users/pranavbansal/.local/bin"
 export PATH="$PATH:/usr/local/bin"
 export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
+export XDG_CONFIG_HOME="~/.config/"
 
 if [[ $- == *i* ]] && [ -t 1 ] && command -v tmux >/dev/null 2>&1 && [ -z "$TMUX" ]; then
   exec tmux new-session -s "term-$PPID-$$"
