@@ -1,10 +1,13 @@
 layout:
     layoutType: 2
     rowSizes:
-        - 2
+        - 3
         - 2
     centerEachRow: true
 clocks:
+    - heading: New York, America
+      zone: America/New_York
+      color: red
     - heading: San Francisco, USA
       zone: America/Los_Angeles
       color: white
@@ -14,9 +17,6 @@ clocks:
     - heading: Abu Dhabi, UAE
       zone: Asia/Dubai
       color: yellow
-    - heading: New Delhi, India
-      zone: Asia/Kolkata
-      color: green
 live: false
 seconds: false
 twelveHour: true
