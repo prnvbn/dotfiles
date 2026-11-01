@@ -5,7 +5,7 @@ export PATH="$PATH:/usr/local/bin"
 export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 
-if [[ $- == *i* && -z ${TMUX:-} && ${TERM_PROGRAM:-} != zed ]]; then
+if [[ $- == *i* && -z ${TMUX:-} && ${TERM_PROGRAM:-} != zed && ${TERM_PROGRAM:-} != rex ]]; then
   exec tmux new-session -s "term-$PPID-$$"
 fi
 
@@ -113,3 +113,6 @@ export CPPFLAGS="-I/opt/homebrew/opt/postgresql@15/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@15/lib/pkgconfig"
 
 source ~/.bashrc.local
+
+# Vite+ bin (https://viteplus.dev)
+. "/Users/pranavbansal/.config/vite-plus/env"
