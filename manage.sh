@@ -20,37 +20,53 @@ write_diff() {
   local source="$REPO/$repo_rel"
   local diff_file="$DIFF_DIR/${repo_rel//\//__}.diff"
 
-  if [ ! -f "$source" ]; then
-    echo "No repo file found: $repo_rel"
+  if [ ! -e "$source" ]; then
+    echo "No repo path found: $repo_rel"
     return
   fi
 
-  if [ -f "$target" ]; then
-    if diff -u "$target" "$source" > "$diff_file"; then
-      rm "$diff_file"
-    else
-      local status=$?
-      if [ "$status" -eq 1 ]; then
-        changes_needed=1
-        echo "Wrote $(basename "$diff_file")"
-      else
-        echo "Failed to diff $target" >&2
-        return "$status"
-      fi
+  local comparison="$target"
+  local empty_dir=""
+  local status=0
+  local -a diff_options=(-u)
+
+  if [ -d "$source" ]; then
+    diff_options=(-ruN)
+    if [ ! -e "$target" ]; then
+      empty_dir="$(mktemp -d)"
+      comparison="$empty_dir"
+    elif [ ! -d "$target" ]; then
+      echo "Path type differs: $target is a file; $repo_rel is a directory" > "$diff_file"
+      changes_needed=1
+      echo "Wrote $(basename "$diff_file")"
+      return
     fi
+  elif [ -d "$target" ]; then
+    echo "Path type differs: $target is a directory; $repo_rel is a file" > "$diff_file"
+    changes_needed=1
+    echo "Wrote $(basename "$diff_file")"
+    return
+  elif [ ! -e "$target" ]; then
+    comparison=/dev/null
+  fi
+
+  diff "${diff_options[@]}" "$comparison" "$source" > "$diff_file" || status=$?
+  if [ -n "$empty_dir" ]; then
+    rmdir "$empty_dir"
+  fi
+
+  if [ "$status" -gt 1 ]; then
+    echo "Failed to diff $target" >&2
+    return "$status"
+  elif [ ! -e "$target" ]; then
+    changes_needed=1
+    echo "New path: $target" >> "$diff_file"
+    echo "Wrote $(basename "$diff_file") for new path $target"
+  elif [ "$status" -eq 1 ]; then
+    changes_needed=1
+    echo "Wrote $(basename "$diff_file")"
   else
-    if diff -u /dev/null "$source" > "$diff_file"; then
-      rm "$diff_file"
-    else
-      local status=$?
-      if [ "$status" -eq 1 ]; then
-        changes_needed=1
-        echo "Wrote $(basename "$diff_file") for new file $target"
-      else
-        echo "Failed to diff $target" >&2
-        return "$status"
-      fi
-    fi
+    rm "$diff_file"
   fi
 }
 
@@ -59,14 +75,18 @@ install_file() {
   local target="$2"
   local source="$REPO/$repo_rel"
 
-  if [ ! -f "$source" ]; then
-    echo "No repo file found: $repo_rel"
+  if [ ! -e "$source" ]; then
+    echo "No repo path found: $repo_rel"
     return
   fi
 
   mkdir -p "$(dirname "$target")"
-  cp "$target" "$target.bak"
-  cp "$source" "$target"
+  if [ -e "$target" ] || [ -L "$target" ]; then
+    rm -rf "$target.bak"
+    cp -RP "$target" "$target.bak"
+    rm -rf "$target"
+  fi
+  cp -RP "$source" "$target"
   echo "Installed $target"
 }
 
@@ -75,13 +95,14 @@ refresh_file() {
   local target="$2"
   local source="$REPO/$repo_rel"
 
-  if [ ! -f "$target" ]; then
-    echo "No target file found: $target"
+  if [ ! -e "$target" ]; then
+    echo "No target path found: $target"
     return
   fi
 
   mkdir -p "$(dirname "$source")"
-  cp "$target" "$source"
+  rm -rf "$source"
+  cp -RP "$target" "$source"
   echo "Refreshed $repo_rel"
 }
 
@@ -90,11 +111,12 @@ rollback_file() {
   local target="$2"
   local backup="$target.bak"
 
-  if [ ! -f "$backup" ]; then
-    echo "No backup file found: $backup"
+  if [ ! -e "$backup" ] && [ ! -L "$backup" ]; then
+    echo "No backup path found: $backup"
     return
   fi
 
+  rm -rf "$target"
   mv "$backup" "$target"
   echo "Rolled back $target"
 }
@@ -108,8 +130,10 @@ declare -A files=(
   [".bashrc"]="$HOME/.bashrc"
   [".bash_profile"]="$HOME/.bash_profile"
   [".vimrc"]="$HOME/.vimrc"
-  [".config/alacritty/alacritty.toml"]="$HOME/.config/alacritty/alacritty.toml"
-  [".config/clocks/config.yaml"]="$HOME/.config/clocks/config.yaml"
+  [".config/alacritty"]="$HOME/.config/alacritty"
+  [".config/clocks"]="$HOME/.config/clocks"
+  [".config/nvim"]="$HOME/.config/nvim"
+  [".config/rex"]="$HOME/.config/nvim"
   [".config/starship.toml"]="$HOME/.config/starship.toml"
   [".vscode/keybindings.json"]="$HOME/Library/Application Support/Code/User/keybindings.json"
   [".vscode/settings.json"]="$HOME/Library/Application Support/Code/User/settings.json"
