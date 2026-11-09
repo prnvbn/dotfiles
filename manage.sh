@@ -126,6 +126,7 @@ usage() {
 }
 
 declare -A files=(
+  [".agents/skills"]="$HOME/.agents/skills"
   [".tmux.conf"]="$HOME/.tmux.conf"
   [".bashrc"]="$HOME/.bashrc"
   [".bash_profile"]="$HOME/.bash_profile"
