@@ -29,7 +29,8 @@ alias stmux="tmux source-file ~/.tmux.conf"
 # git
 alias gps="git push"
 alias gpl="git pull"
-alias gcm="git checkout main"
+alias gcm='git commit -m'
+
 source "$HOME/.local/share/bash-completion/completions/git"
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
