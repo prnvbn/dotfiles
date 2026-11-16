@@ -31,7 +31,9 @@ vim.pack.add({
   "https://github.com/stevearc/oil.nvim",
   "https://github.com/ibhagwan/fzf-lua",
   "https://github.com/lewis6991/gitsigns.nvim",
+  "https://github.com/kylechui/nvim-surround",
 }, { confirm = false })
+
 require("oil").setup({ columns = {} })
 require("fzf-lua").setup({ winopts = { preview = { default = "builtin" } } })
 require("gitsigns").setup({
@@ -47,6 +49,7 @@ require("gitsigns").setup({
       vim.tbl_extend("force", opts, { desc = "Stage Git hunk" }))
   end,
 })
+require("nvim-surround").setup({})
 
 local map = vim.keymap.set
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
