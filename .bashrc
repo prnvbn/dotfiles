@@ -17,6 +17,7 @@ alias cat=bat
 alias grep=rg
 alias c=clocks
 alias ba="bus arrivals"
+alias ca="codex-auth"
 
 alias ebashrc="vi ~/.bashrc"
 alias sbashrc="source ~/.bashrc"
