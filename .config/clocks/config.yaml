@@ -17,6 +17,9 @@ clocks:
     - heading: Abu Dhabi, UAE
       zone: Asia/Dubai
       color: yellow
+    - heading: Delhi, India
+      zone: Asia/Kolkata
+      color: green
 live: false
 seconds: false
 twelveHour: true
